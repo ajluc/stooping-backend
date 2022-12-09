@@ -14,3 +14,10 @@ class Users(Resource):
     user = User(**data)
     user.create()
     return user.json(), 201
+
+class UserDetails(Resource):
+  def get(self, user_id):
+    user = User.query.options(joinedload(
+        'stoops')).filter_by(id=user_id).first()
+    stoops = [s.json() for s in user.stoops]
+    return {**user.json(), 'stoops': stoops}

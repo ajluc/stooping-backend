@@ -6,7 +6,7 @@ from models.db import db
 from models.user import User
 from models.stoop import Stoop
 from models.neighborhood import Neighborhood
-from resources import user, stoop, neighborhood
+from resources import user, stoop, neighborhood, auth
 
 app = Flask(__name__)
 CORS(app)
@@ -19,7 +19,10 @@ app.config['SQLALCHEMY_ECHO'] = True
 db.init_app(app)
 migrate = Migrate(app, db)
 
+api.add_resource(auth.Register, '/auth/register')
+api.add_resource(auth.Login, '/auth/login')
 api.add_resource(user.Users, '/users')
+api.add_resource(user.UserDetails, '/users/<int:user_id>')
 api.add_resource(neighborhood.Neighborhoods, '/nb')
 api.add_resource(stoop.Stoops, '/stoops')
 

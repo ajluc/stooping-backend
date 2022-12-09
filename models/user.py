@@ -11,7 +11,7 @@ class User(db.Model):
   password_digest = db.Column(db.String(255))
   created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
   updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
-  neighborhood_id = db.Column(db.Integer, db.ForeignKey('neighborhoods.id'), nullable=False)
+  neighborhood_id = db.Column(db.Integer, db.ForeignKey('neighborhoods.id'), nullable=True)
   neighborhood = db.relationship("Neighborhood", back_populates="users")
   stoops = db.relationship("Stoop", cascade="all", back_populates="user")
 
@@ -38,4 +38,9 @@ class User(db.Model):
   @classmethod
   def find_by_id(cls, user_id):
     user = User.query.filter_by(id=user_id).first()
+    return user
+
+  @classmethod
+  def find_by_email(cls, email):
+    user = User.query.filter_by(email=email).first()
     return user
