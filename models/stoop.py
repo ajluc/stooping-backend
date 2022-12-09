@@ -12,10 +12,33 @@ class Stoop(db.Model):
   # reportedTaken = db.Column(db.ARRAY)
   created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
   updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, onupdate=datetime.now())
+  user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  neighborhood_id = db.Column(db.Integer, db.ForeignKey('neighborhoods.id'), nullable=False)
+  user = db.relationship("User", back_populates="stoops")
+  neighborhood = db.relationship("Neighborhood", back_populates="stoops")
 
   # Set up constructor for the model
-  def __init__(self, title, description, image):
+  def __init__(self, title, description, image, user_id, neighborhood_id):
     self.title = title
     self.description = description
     self.image = image
+    self.user_id = user_id
+    self.neighborhood_id = neighborhood_id
+
+  def json(self):
+    return {"id": self.id, "title": self.title, "description": self.description, "image": self.image, "user_id": self.user_id, "neighborhood_id": self.neighborhood_id, "created_at": str(self.created_at), "updated_at": str(self.updated_at)}
+
+  def create(self):
+    db.session.add(self)
+    db.session.commit()
+    return self
+
+  @classmethod
+  def find_all(cls):
+    return Stoop.query.all()
+
+  @classmethod
+  def find_by_id(cls, stoop_id):
+    stoop = Stoop.query.filter_by(id=stoop_id).first()
+    return stoop
 
