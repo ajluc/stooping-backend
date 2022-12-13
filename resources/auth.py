@@ -19,6 +19,7 @@ class Login(Resource):
 
     def get(self):
         token = strip_token(request)
+        print(request.headers)
         if token:
             payload = read_token(token)
             return payload
@@ -27,13 +28,13 @@ class Login(Resource):
 
 class Register(Resource):
     def post(self):
-      data = request.get_json()
-      params = {
-          "name": data['name'],
-          "email": data['email'],
-          "password_digest": gen_password(data['password']),
-          "neighborhood_id": data['neighborhood_id']
-      }
-      user = User(**params)
-      user.create()
-      return user.json(), 201
+        data = request.get_json()
+        params = {
+            "name": data['name'],
+            "email": data['email'],
+            "password_digest": gen_password(data['password']),
+            "neighborhood_id": data['neighborhood_id']
+        }
+        user = User(**params)
+        user.create()
+        return user.json(), 201
