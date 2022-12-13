@@ -16,17 +16,21 @@ class Stoop(db.Model):
   neighborhood_id = db.Column(db.Integer, db.ForeignKey('neighborhoods.id'), nullable=False)
   user = db.relationship("User", back_populates="stoops")
   neighborhood = db.relationship("Neighborhood", back_populates="stoops")
+  latitude = db.Column(db.Float, nullable=True)
+  longitude = db.Column(db.Float, nullable=True)
 
   # Set up constructor for the model
-  def __init__(self, title, description, image, user_id, neighborhood_id):
+  def __init__(self, title, description, image, user_id, neighborhood_id, latitude, longitude):
     self.title = title
     self.description = description
     self.image = image
     self.user_id = user_id
     self.neighborhood_id = neighborhood_id
+    self.latitude = latitude
+    self.longitude = longitude
 
   def json(self):
-    return {"id": self.id, "title": self.title, "description": self.description, "image": self.image, "user_id": self.user_id, "neighborhood_id": self.neighborhood_id, "created_at": str(self.created_at), "updated_at": str(self.updated_at)}
+    return {"id": self.id, "title": self.title, "description": self.description, "image": self.image, "latitude": self.latitude, "longitude": self.longitude, "user_id": self.user_id, "neighborhood_id": self.neighborhood_id, "created_at": str(self.created_at), "updated_at": str(self.updated_at)}
 
   def create(self):
     db.session.add(self)
