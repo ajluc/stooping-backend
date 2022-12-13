@@ -26,9 +26,8 @@ def compare_password(password, hashed_password):
   return bcrypt.checkpw(password.encode(), hashed_password.encode())
 
 def strip_token(req):
-  print(req.headers.get("Authorization", None))
   try:
-    token = req.headers['Authorization'].split(' ')[1]
+    token = req.headers['authorization'].split(' ')[1]
     return token
   except:
     return None
