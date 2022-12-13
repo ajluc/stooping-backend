@@ -5,9 +5,13 @@ from models.db import db
 from sqlalchemy.orm import joinedload
 
 class Stoops(Resource):
+  # def get(self):
+  #   stoops = Stoop.find_all()
+  #   return [s.json() for s in stoops]
+
   def get(self):
-    stoops = Stoop.find_all()
-    return [s.json() for s in stoops]
+    stoops = Stoop.query.options(joinedload('neighborhood')).all()
+    return [{**s.json(), "neighborhood": s.neighborhood.json()} for s in stoops]
 
   def post(self):
     data = request.get_json()
