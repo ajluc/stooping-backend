@@ -13,7 +13,8 @@ def create_token(payload):
 def read_token(token):
   try:
     payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-    return payload
+    print(payload)
+    return {"token": token, "payload":payload}
   except jwt.InvalidSignatureError:
     return "Signature Invalid"
   except jwt.InvalidTokenError:
