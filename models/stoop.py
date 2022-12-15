@@ -46,3 +46,10 @@ class Stoop(db.Model):
     stoop = Stoop.query.filter_by(id=stoop_id).first()
     return stoop
 
+  @classmethod
+  def delete(cls, id):
+        stoop = db.get_or_404(
+            cls, id, description=f'Record with id:{id} is not available')
+        db.session.delete(stoop)
+        db.session.commit()
+        return ''

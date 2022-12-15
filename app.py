@@ -25,6 +25,7 @@ api.add_resource(user.Users, '/users')
 api.add_resource(user.UserDetails, '/users/<int:user_id>')
 api.add_resource(neighborhood.Neighborhoods, '/nb')
 api.add_resource(stoop.Stoops, '/stoops')
+api.add_resource(stoop.StoopDetails, '/stoops/<int:stoop_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)

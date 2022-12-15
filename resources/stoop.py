@@ -18,3 +18,13 @@ class Stoops(Resource):
     stoop = Stoop(**data)
     stoop.create()
     return stoop.json(), 201
+
+class StoopDetails(Resource):
+  def get(self, stoop_id):
+    data = Stoop.find_by_id(stoop_id)
+    result = data.json()
+    return result
+
+  def delete(self, stoop_id):
+    data = Stoop.delete(stoop_id)
+    return data
