@@ -1,5 +1,6 @@
 from models.db import db
 from datetime import datetime
+from flask import request
 
 class Stoop(db.Model):
   # Define the table name
@@ -47,9 +48,19 @@ class Stoop(db.Model):
     return stoop
 
   @classmethod
-  def delete(cls, id):
-        stoop = db.get_or_404(
-            cls, id, description=f'Record with id:{id} is not available')
-        db.session.delete(stoop)
-        db.session.commit()
-        return ''
+  def delete(cls, stoop_id):
+    stoop = Stoop.query.filter_by(id=stoop_id).first()
+    db.session.delete(stoop)
+    db.session.commit()
+    return ''
+
+  @classmethod
+  def update(cls, stoop_id):
+    stoop = Stoop.query.filter_by(id=stoop_id).first()
+    request_data = request.get_json()
+    stoop.title = request_data['title']
+    stoop.description = request_data['description']
+    stoop.image = request_data['image']
+    stoop.neighborhood_id = request_data['neighborhood_id']
+    db.session.commit()
+    return stoop.json()

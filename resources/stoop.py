@@ -28,3 +28,7 @@ class StoopDetails(Resource):
   def delete(self, stoop_id):
     data = Stoop.delete(stoop_id)
     return data
+
+  def put(self, stoop_id):
+    data = Stoop.update(stoop_id)
+    return data
