@@ -16,12 +16,13 @@ In an effort to reduce waste of goods that are still usable, "Stooping" has beco
 
 ### **_Technologies Used_**
 
-1. PSQL and Sequelize
-2. React.js
-3. Express
-4. Javascript
-5. HTML
-6. CSS
+1. Flask
+2. SQLAlchemy
+3. Javascript
+4. HTML
+5. CSS
+6. MapboxGL
+7. Bootstrap/Reactstrap
 
 ---
 
@@ -33,15 +34,32 @@ On the home page, view a map with active Stoops. Click each Stoop to view the fu
 
 ### **_Screenshots_**
 
+![Stooping Home](./public/img/stooping-home.png)
+
+![Stooping Details](./public/img/stooping-details.png)
+
+![Stooping Login](./public/img/stooping-login.png)
+
+![ERD](<./public/img/Capstone%20ERD%20(2).jpg>)
+
 ---
 
 ### **_Tasks_**
 
-- [x] Readme
-- [ ] Search bar functionality
+- [ ] Add "collected" button
+- [ ] Improve markers to update on edit/submit of new stoop
+- [ ] Finish posting list view
 
 ---
 
 ### **_Credits_**
 
-Hidden Scrollbar: [W3Schools](https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp)
+Pagination tutorial: [freeCodeCamp](https://www.freecodecamp.org/news/build-a-custom-pagination-component-in-react/)
+
+Flexbox Guide: [CSS-Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+Grid Guide: [CSS-Tricks](https://css-tricks.com/snippets/css/complete-guide-grid/)
+
+Mapbox with React Examples: [github](https://github.com/mapbox/mapbox-react-examples)
+
+Removing markers from a map: [Stack Overflow](https://stackoverflow.com/questions/46155523/mapbox-clear-all-current-markers)
