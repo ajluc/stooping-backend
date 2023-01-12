@@ -34,13 +34,13 @@ On the home page, view a map with active Stoops. Click each Stoop to view the fu
 
 ### **_Screenshots_**
 
-![Stooping Home](./public/img/stooping-home.png)
+![Stooping Home](./img/stooping-home.png)
 
-![Stooping Details](./public/img/stooping-details.png)
+![Stooping Details](./img/stooping-details.png)
 
-![Stooping Login](./public/img/stooping-login.png)
+![Stooping Login](./img/stooping-login.png)
 
-![ERD](<./public/img/Capstone%20ERD%20(2).jpg>)
+![ERD](<./img/Capstone%20ERD%20(2).jpg>)
 
 ---
 
