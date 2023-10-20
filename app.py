@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
@@ -7,7 +8,6 @@ from models.user import User
 from models.stoop import Stoop
 from models.neighborhood import Neighborhood
 from resources import user, stoop, neighborhood, auth
-import os
 
 app = Flask(__name__)
 CORS(app)
